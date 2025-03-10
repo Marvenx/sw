@@ -1,11 +1,10 @@
-package Grp4;
+package TP2;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class Test {
+public class Main {
     public static void main(String[] args) {
-        CurriculumForm f=new CurriculumForm();
+        Bureau f=new Bureau();
 
         f.setVisible(true);
     }
