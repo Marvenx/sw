@@ -22,19 +22,22 @@ public class EtudiantManager {
             System.out.println("Connection Failed, Error: " + e.getMessage());
         }
     }
-
     int insertStudent(int CIN, String nom, String prenom, double moyenne) {
         if (statement != null) {
             try {
-                String sql = "INSERT INTO etudiant(CIN,nom,prenom,moyenne) VALUES (CIN,nom,prenom,moyenne)";
-                return statement.executeUpdate(sql);
+                String sql = "INSERT INTO etudiant(CIN,nom,prenom,moyenne) VALUES (?,?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, CIN);
+                ps.setString(2,nom);
+                ps.setString(3,prenom);
+                ps.setDouble(4,moyenne);
+                return ps.executeUpdate(sql);
             } catch (SQLException e) {
                 System.out.println("Data Not Inserted, Error: " + e.getMessage());
             }
         }
         return 0;
     }
-
     void getStudents() {
         if (statement != null) {
             try {
@@ -56,6 +59,13 @@ public class EtudiantManager {
                 System.out.println("Data Not Selected, Error: " + e.getMessage());
             }
         }
+
+    }
+    void modifierEtudiant() {
+
+    }
+    void supprimerEtudiant() {
+
     }
     ResultSet selectEtudiant (String req){
         if (req != null){

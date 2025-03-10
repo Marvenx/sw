@@ -39,7 +39,29 @@ public class MyTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int col) {
+
         return data.get(row)[col];
     }
 
+    @Override
+    public String getColumnName(int column) {
+        try {
+            return rsmd.getColumnName(column+1);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        data.
+    }
+    int ajouterEtudiant(int cin,String nom,String prenom,Double moyenne) {
+        int a = manager.insertStudent(cin,nom,prenom,moyenne);
+        if (a>0) {
+            data.add(new Object[]{cin,nom,prenom,moyenne});
+            fireTableDataChanged(); // refresh rerender
+        }
+        return a;
+    }
 }
